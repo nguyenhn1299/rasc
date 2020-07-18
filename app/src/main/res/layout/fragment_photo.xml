@@ -23,10 +23,11 @@
     app:camera_focus="continuous"
     app:camera_permissions="camera" />
     <Button
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/roundedbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@drawable/camera"
         android:layout_gravity="center_horizontal|bottom"
-android:id="@+id/takePhotoBtn"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/takePhotoBtn"
         />
 </FrameLayout>

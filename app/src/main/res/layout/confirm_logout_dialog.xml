@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/for_dialog">
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="Thông tin"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Are you sure you want to log out?"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:textColor="#66503A"
+        android:textSize="15dp"
+        android:id="@+id/info"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="Đóng"
+        android:layout_gravity="center"
+        android:id="@+id/yes_button"
+        android:background="@drawable/viewpics"
+        android:backgroundTint="#e6e6e6"
+        android:textColor="#66503A"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>
