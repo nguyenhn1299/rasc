@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="40dp"
+    android:paddingBottom="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:background="#fbfbfb">
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        android:layout_marginTop="8dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp"
+        android:paddingTop="5dp"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fiber_manual_record_black_24dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_vert_black_24dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location_on_red_24dp"
+            />
+    </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       >
+       <TextView
+           android:text="Your location"
+           android:layout_width="match_parent"
+           android:layout_marginEnd="40dp"
+           android:layout_marginStart="10dp"
+           android:layout_height="35dp"
+           android:id="@+id/origin"
+           android:gravity="center_vertical"
+           />
+
+       <TextView
+           android:text="Destination"
+           android:layout_width="match_parent"
+           android:layout_marginEnd="40dp"
+           android:layout_marginStart="10dp"
+           android:layout_height="35dp"
+           android:id="@+id/dest"
+           android:gravity="center_vertical"
+           />
+   </LinearLayout>
+
+</LinearLayout>

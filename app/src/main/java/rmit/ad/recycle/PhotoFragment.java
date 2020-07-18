@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.media.ImageReader;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,11 +29,26 @@ import android.widget.Toast;
 import com.camerakit.CameraKitView;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -56,7 +72,7 @@ public class PhotoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_photo, container, false);
         cameraKitView = view.findViewById(R.id.camera);
-        checkCameraPermission();
+
         Button takePhotoBtn = view.findViewById(R.id.takePhotoBtn);
         takePhotoBtn.setOnClickListener(photoOnClickListener);
         // From button OnClickListener
@@ -64,16 +80,24 @@ public class PhotoFragment extends Fragment {
         return view;
     }
 
+    Intent intent;
+
     private View.OnClickListener photoOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.d("NANA", "onClick: ");
             cameraKitView.captureImage(new CameraKitView.ImageCallback() {
                 @Override
                 public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
                     Bitmap bmp=BitmapFactory.decodeByteArray(capturedImage,0,capturedImage.length);
+                    Bitmap scaleBmp = Bitmap.createScaledBitmap(bmp, 56, 56, false);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    scaleBmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
                     String str = tempFileImage(getContext(), bmp, "photo");
-                    classifyObject(str);
+                    intent = new Intent(getActivity(), CategorizeActivity.class);
+                    intent.putExtra("photo", str);
+                    JsonPostRequest jsonPostRequest = new JsonPostRequest(byteArray);
+                    jsonPostRequest.execute();
                 }
             });
         }
@@ -98,9 +122,7 @@ public class PhotoFragment extends Fragment {
 
 
     public void classifyObject(String photo) {
-        Intent intent = new Intent(getActivity(), CategorizeActivity.class);
-        intent.putExtra("photo", photo);
-        startActivity(intent);
+
     }
 
     @Override
@@ -142,18 +164,18 @@ public class PhotoFragment extends Fragment {
             openFileChooser();
         }
     }
-
-    private void checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(
-                    new String[]{Manifest.permission.CAMERA},
-                    ALLOW_READ_EXTERNAL);
-        } else {
-            openFileChooser();
-        }
-    }
+//
+//    private void checkCameraPermission() {
+//        if (ContextCompat.checkSelfPermission(getActivity(),
+//                Manifest.permission.CAMERA)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            requestPermissions(
+//                    new String[]{Manifest.permission.CAMERA},
+//                    ALLOW_READ_EXTERNAL);
+//        } else {
+//            openFileChooser();
+//        }
+//    }
 
     private void openFileChooser() {
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -163,11 +185,74 @@ public class PhotoFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == ALLOW_CAMERA) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                cameraKitView.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            } else {
-                Toast.makeText(getActivity(), "Please allow access camera", Toast.LENGTH_SHORT).show();
+        cameraKitView.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private class JsonPostRequest extends AsyncTask<Void, Void, String> {
+
+        byte[] array;
+        JsonPostRequest(byte[] array) {
+            this.array = array;
+        }
+        String TAG = "jjj";
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String status = "";
+            try {
+                String address = "https://0937997f3d84.ngrok.io";
+                JSONObject json = new JSONObject();
+
+                Log.d(TAG, "Byte length: " + array.length);
+                json.put("photo", new String(array));
+
+                String requestBody = json.toString();
+                Log.d(TAG, "doInBackground: " + requestBody);
+                URL url = new URL(address);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setDoOutput(true);
+                urlConnection.setDoInput(true);
+
+
+//                DataOutputStream os = new DataOutputStream(urlConnection.getOutputStream());
+//                Log.d(TAG, "doInBackground: hêlo");
+//                os.write
+//                Log.d(TAG, "doInBackground: hêlo");
+                try(OutputStream os = urlConnection.getOutputStream()) {
+                    byte[] input = requestBody.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                    status = urlConnection.getResponseMessage();
+                    os.flush();
+                }
+
+
+
+            } catch (MalformedURLException e) {
+                return e.toString();
+            } catch (ProtocolException e){return e.toString();}
+            catch (IOException e) { return  e.toString();}
+            catch ( JSONException e) {
+                return e.toString();
+            }
+
+            return status;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.d(TAG, "onPostExecute: " + s);
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                String result = jsonObject.getString("result");
+                intent.putExtra("type", result);
+                startActivity(intent);
+            } catch (JSONException e) {
+                Toast.makeText(getActivity(), "Can not connect to server", Toast.LENGTH_SHORT).show();
             }
         }
     }

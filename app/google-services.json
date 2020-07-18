@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1042432200126",
+    "firebase_url": "https://zinc-code-283616.firebaseio.com",
+    "project_id": "zinc-code-283616",
+    "storage_bucket": "zinc-code-283616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042432200126:android:9ef12c70139751e802bdef",
+        "android_client_info": {
+          "package_name": "rmit.ad.recycle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042432200126-9cgulf69oef9sr2cv172imtr25467cli.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rmit.ad.recycle",
+            "certificate_hash": "b694d84636791cdba2475b16bf76466f516eb810"
+          }
+        },
+        {
+          "client_id": "1042432200126-8m7ffmbchf78mj0prsrg3otde2l5pp8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO-7ovqlgVAqoJXfAbkr5oJtyzgnPYLgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042432200126-8m7ffmbchf78mj0prsrg3otde2l5pp8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

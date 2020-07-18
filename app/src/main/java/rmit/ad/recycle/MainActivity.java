@@ -2,9 +2,15 @@ package rmit.ad.recycle;
 
 import android.os.Bundle;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +18,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         initFragment();
-
     }
+
 
     private final FragmentManager fm = getSupportFragmentManager();
     private void initFragment() {
@@ -73,6 +81,28 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+
+    public void createSite() {
+        Site site = new Site(new GeoPoint(10.782359, 106.682129));
+        site.setTitle("UBND Phường 9, Q3");
+        site.getTypes().add("pin");
+        site.getTypes().add("dientu");
+
+
+        Site site1 = new Site(new GeoPoint(10.754351, 106.708079));
+        site1.setTitle("UBND Phường 15, Q4");
+        site1.getTypes().add("pin");
+
+        Site site2 = new Site(new GeoPoint(10.793020, 106.680954));
+        site2.setTitle("UBND Phường 17, Q Phú Nhuận");
+        site2.getTypes().add("dientu");
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        db.collection("sites").add(site);
+    }
 
 }
 
