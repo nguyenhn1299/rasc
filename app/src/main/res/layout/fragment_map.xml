@@ -6,12 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to map"
-        android:id="@+id/pin"
-/>
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="ĐIỂM THU THẬP PIN, ĐỒ ĐIỆN TỬ"
+        android:gravity="bottom"
+        android:id="@+id/frag_title"
+        android:textColor="#66503A"
+        android:background="#c7e2b2"
+        android:textSize="20dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="15dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/map_detail_layout"
+
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="60dp"
+        />
+    <FrameLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/direction_detail_layout"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        />
 
 </RelativeLayout>

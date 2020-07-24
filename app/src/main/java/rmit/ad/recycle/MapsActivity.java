@@ -74,8 +74,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int DEFAULT_ZOOM = 15;
     private static final LatLng mDefaultLocation = new LatLng(10.730918, 106.693402);
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    public final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
-    public final static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
     private List<Site> allSites = new ArrayList<>();
     private boolean isBattery;
@@ -399,13 +397,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         public void mappingView(View view) {
-            avatar = view.findViewById(R.id.avatar_detail);
+
             title = view.findViewById(R.id.title_detail);
-            time = view.findViewById(R.id.time_detail);
-            date = view.findViewById(R.id.date_detail);
+
+
             address = view.findViewById(R.id.address_detail);
             direction = view.findViewById(R.id.directionBtn);
-            showDetail = view.findViewById(R.id.showDetailBtn);
+
         }
 
         public void displayData() {

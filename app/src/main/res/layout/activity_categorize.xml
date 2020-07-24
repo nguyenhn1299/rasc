@@ -1,42 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.google.android.material.appbar.AppBarLayout
+    android:layout_height="match_parent"
+    tools:context=".CategorizeActivity"
+    android:background="#f0f0f0">
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:layout_height="650dp"
+        android:background="@drawable/for_sign_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_close_brown_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linear"
+        android:background="#00000000"
+        android:layout_marginStart="10dp"
+        android:id="@+id/closeBtn"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/view"
+        android:orientation="vertical"
+        android:id="@+id/linear">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="Thủy Tinh"
+            android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textColor="#66503A"
+            android:textSize="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/desc"
+            android:textAlignment="center"
+            android:paddingHorizontal="10dp"
+            android:text="Hãy bỏ vào thùng tái chế"
+            android:textColor="#66503A"
+            android:paddingTop="10dp"
+            android:textSize="17dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="8dp"
+            android:src="@drawable/pin"
+
+            android:id="@+id/image"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/sub"
+            android:text="Nhập tên vật dụng bạn muốn tìm"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/viewpics"
+            android:backgroundTint="#f0f0f0"
+            android:padding="15dp"
+            android:textColor="#66503A"
+            android:text="Thong tin ve rac tai che" />
+
+        <RelativeLayout
+            android:elevation="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="10dp"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/viewpics"
+            android:id="@+id/searchLayout"
             >
+
+            <Button
+                android:id="@+id/clearText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/ic_close_brown_24dp"
+                />
+
             <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/searchImage"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10sp"
+                android:src="@drawable/ic_search_brown_24dp"/>
+
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/image"/>
+                android:layout_centerVertical="true"
+                android:textSize="15sp"
+                android:textColor="#66503A"
+                android:id="@+id/inputSearch"
+                android:layout_toEndOf="@id/searchImage"
+                android:background="@null"
+                android:padding="10dp"
+                android:hint="Tìm vật dụng"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:focusableInTouchMode="false"/>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="83dp"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        </RelativeLayout>
+    </LinearLayout>
 
-            </androidx.appcompat.widget.Toolbar>
-
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <include
-        
-        layout="@layout/detail_scroll" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

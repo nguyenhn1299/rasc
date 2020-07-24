@@ -12,6 +12,13 @@
 <!--        android:layout_height="match_parent"-->
 <!--        android:text="photo" />-->
 
+    <View
+        android:id="@+id/viewHide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:visibility="invisible"
+        />
     <com.camerakit.CameraKitView
         android:id="@+id/camera"
         android:layout_width="match_parent"
@@ -22,11 +29,21 @@
     app:camera_facing="back"
     app:camera_focus="continuous"
     app:camera_permissions="camera" />
+
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@drawable/camera"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/takePhotoBtn"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/roundedbtn"
-        android:layout_gravity="center_horizontal|bottom"
-android:id="@+id/takePhotoBtn"
+        android:layout_gravity="center"
+        android:visibility="invisible"
         />
 </FrameLayout>

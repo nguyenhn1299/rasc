@@ -15,8 +15,9 @@
         app:menu="@menu/bottom_nav"
         android:id="@+id/bottom_navigation"
         app:labelVisibilityMode="labeled"
-        android:background="#e0d3ce"
+        android:background="#c7e2b2"
         app:itemIconTint="#66503A"
-        app:itemTextColor="#66503A"/>
+        app:itemTextColor="#66503A"
+        app:itemIconSize="30dp"/>
 
 </RelativeLayout>

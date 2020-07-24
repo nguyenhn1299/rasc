@@ -7,30 +7,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/for_not_sigin">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/avatar_detail"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ava"
-            android:transitionName="avatarTransition"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/user_name_detail"
-            android:text="USER NAME HERE"
-            android:textSize="10dp"
-            android:transitionName="usernameTransition"
-            />
-    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,36 +16,13 @@
         android:textStyle="bold"
         android:transitionName="titleTransition"
         />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/time_detail"
-            android:textSize="12dp"
-            android:text="TIME HERE"
-            android:transitionName="dateTransition"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/date_detail"
-            android:layout_marginLeft="10dp"
-            android:textSize="12dp"
-            android:text="DATE HERE"
-            android:transitionName="dateTransition"
-            />
-    </LinearLayout>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/address_detail"
         android:text="ADDRESS HERE"
         android:textSize="12dp"
+        android:paddingTop="8dp"
         android:transitionName="addressTransition"
 
         />
@@ -89,16 +42,6 @@
                 android:textAllCaps="false"
                 android:id="@+id/directionBtn"
                 android:drawableLeft="@drawable/ic_directions_black_24dp"
-                />
-            <Button
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:text="Details"
-                android:background="@drawable/round_gradient"
-                android:textColor="#2f6de0"
-                android:textAllCaps="false"
-                android:id="@+id/showDetailBtn"
                 />
         </LinearLayout>
 

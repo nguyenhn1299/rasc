@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_photo"
-        android:title="Sort"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="Phân loại"
+        android:icon="@drawable/ic_baseline_delete_24"/>
     <item
         android:id="@+id/nav_map"
-        android:title="Find"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="Điểm thu"
+        android:icon="@drawable/ic_baseline_location_on_24"/>
     <item
         android:id="@+id/nav_info"
-        android:title="Info"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="Thông tin"
+        android:icon="@drawable/ic_baseline_info_24"/>
 </menu>
